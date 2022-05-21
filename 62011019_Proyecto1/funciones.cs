@@ -74,8 +74,8 @@ namespace _62011019_Proyecto1
             {
                 string[] obj = fi.Split('/');
                 ListaDisponiblesDto registro = new ListaDisponiblesDto(
-                    int.Parse(obj[0]),
-                    int.Parse(obj[1])
+                    obj[0],
+                    obj[1]
                     );
                 ListaDisponiblesDatos.Add(registro);
             }
@@ -86,6 +86,11 @@ namespace _62011019_Proyecto1
             if (ListadoDatos.Count > 0)
             {
                 ConsoleTable.From(ListadoDatos).Write();
+                var registrosEliminados = ListadoDatos.Where(x => x.Activo == false).ToList().Count();
+                if(registrosEliminados > 0)
+                {
+                    Console.WriteLine($"Count eliminados: {registrosEliminados}");
+                }
             }
             else
             {
@@ -225,7 +230,14 @@ namespace _62011019_Proyecto1
                 contador++;
                 RegistrarNuevoObjetoEnTxt(item, true, contador);
             }
+        }
+        private void ActualizarIndicePrimario()
+        {
 
         }
+        private void ActualizarListaDisponibles()
+        {
+
+        }        
     }
 }

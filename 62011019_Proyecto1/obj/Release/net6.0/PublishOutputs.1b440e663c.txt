@@ -1,0 +1,6 @@
+C:\Users\cflam\OneDrive\Documentos\Universidad\Estructura de datos 2\S5\Proyecto publicado\62011019_Proyecto1.exe
+C:\Users\cflam\OneDrive\Documentos\Universidad\Estructura de datos 2\S5\Proyecto publicado\62011019_Proyecto1.dll
+C:\Users\cflam\OneDrive\Documentos\Universidad\Estructura de datos 2\S5\Proyecto publicado\62011019_Proyecto1.deps.json
+C:\Users\cflam\OneDrive\Documentos\Universidad\Estructura de datos 2\S5\Proyecto publicado\62011019_Proyecto1.runtimeconfig.json
+C:\Users\cflam\OneDrive\Documentos\Universidad\Estructura de datos 2\S5\Proyecto publicado\62011019_Proyecto1.pdb
+C:\Users\cflam\OneDrive\Documentos\Universidad\Estructura de datos 2\S5\Proyecto publicado\ConsoleTables.dll

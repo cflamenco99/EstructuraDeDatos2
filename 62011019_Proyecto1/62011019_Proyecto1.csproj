@@ -6,7 +6,12 @@
     <RootNamespace>_62011019_Proyecto1</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ApplicationIcon>casa.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="casa.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ConsoleTables" Version="2.4.2" />

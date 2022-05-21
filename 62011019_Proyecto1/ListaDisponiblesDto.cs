@@ -8,12 +8,12 @@ namespace _62011019_Proyecto1
 {
     public class ListaDisponiblesDto
     {
-        public ListaDisponiblesDto(int numeroRegistro, int tamaño)
+        public ListaDisponiblesDto(string campoLlave, string posicion)
         {
-            NumeroRegistro = numeroRegistro;
-            Tamaño = tamaño;
+            CampoLlave = campoLlave;
+            Posicion = posicion;
         }
-        public int NumeroRegistro { get; set; }
-        public int Tamaño { get; set; }
+        public string CampoLlave { get; set; }
+        public string Posicion { get; set; }
     }
 }

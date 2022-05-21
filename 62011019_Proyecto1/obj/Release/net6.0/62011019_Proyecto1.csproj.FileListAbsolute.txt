@@ -1,0 +1,17 @@
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\bin\Release\net6.0\62011019_Proyecto1.exe
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\bin\Release\net6.0\62011019_Proyecto1.deps.json
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\bin\Release\net6.0\62011019_Proyecto1.runtimeconfig.json
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\bin\Release\net6.0\62011019_Proyecto1.dll
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\bin\Release\net6.0\62011019_Proyecto1.pdb
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\bin\Release\net6.0\ConsoleTables.dll
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\obj\Release\net6.0\62011019_Proyecto1.csproj.AssemblyReference.cache
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\obj\Release\net6.0\62011019_Proyecto1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\obj\Release\net6.0\62011019_Proyecto1.AssemblyInfoInputs.cache
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\obj\Release\net6.0\62011019_Proyecto1.AssemblyInfo.cs
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\obj\Release\net6.0\62011019_Proyecto1.csproj.CoreCompileInputs.cache
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\obj\Release\net6.0\62011019_Proyecto1.csproj.CopyComplete
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\obj\Release\net6.0\62011019_Proyecto1.dll
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\obj\Release\net6.0\refint\62011019_Proyecto1.dll
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\obj\Release\net6.0\62011019_Proyecto1.pdb
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\obj\Release\net6.0\62011019_Proyecto1.genruntimeconfig.cache
+C:\Users\cflam\OneDrive\Documentos\GitHub\EstructuraDeDatos2\62011019_Proyecto1\obj\Release\net6.0\ref\62011019_Proyecto1.dll
