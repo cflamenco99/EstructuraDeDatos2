@@ -12,8 +12,11 @@ namespace _62011019_Proyecto1
     {
         private static int CantidadMaximaCaracteresPorRegistro => 30;
         private static string RutaArchivoDatos => $"../../../Proyecto1.txt";
+        private static string RutaArchivoIndice => $"../../../Indice.txt";
+        private static string RutaArchivoListaDisponibles => $"../../../Disponibles.txt";
         public List<DetalleCasaDto> ListadoDatos { get; set; } = new List<DetalleCasaDto>();
-        public List<IndiceDetalleCasaDto> IndiceListadoDatos { get; set; }
+        public List<IndiceDetalleCasaDto> IndiceListadoDatos { get; set; } = new List<IndiceDetalleCasaDto>();
+        public List<ListaDisponiblesDto> ListaDisponiblesDatos { get; set; } = new List<ListaDisponiblesDto>();
         public funciones()
         {
         }
@@ -41,11 +44,55 @@ namespace _62011019_Proyecto1
                 ListadoDatos.Add(registro);
             }
         }
+        public void ActualizarDatosEnMemoriaIndice()
+        {
+            if (IndiceListadoDatos.Count > 0)
+            {
+                IndiceListadoDatos.RemoveRange(0, IndiceListadoDatos.Count);
+            }
+
+            string[] filas = File.ReadAllLines(RutaArchivoIndice);
+            foreach (string fi in filas)
+            {
+                string[] obj = fi.Split('/');
+                IndiceDetalleCasaDto registro = new IndiceDetalleCasaDto(
+                    int.Parse(obj[0]),
+                    obj[1]
+                    );
+                IndiceListadoDatos.Add(registro);
+            }
+        }
+        public void ActualizarDatosEnMemoriaListaDisponibles()
+        {
+            if (ListaDisponiblesDatos.Count > 0)
+            {
+                ListaDisponiblesDatos.RemoveRange(0, ListaDisponiblesDatos.Count);
+            }
+
+            string[] filas = File.ReadAllLines(RutaArchivoListaDisponibles);
+            foreach (string fi in filas)
+            {
+                string[] obj = fi.Split('/');
+                ListaDisponiblesDto registro = new ListaDisponiblesDto(
+                    int.Parse(obj[0]),
+                    int.Parse(obj[1])
+                    );
+                ListaDisponiblesDatos.Add(registro);
+            }
+        }
         public void LeerRegistros()
         {
             ActualizarDatosEnMemoria();
-
-            ConsoleTable.From(ListadoDatos).Write();
+            if (ListadoDatos.Count > 0)
+            {
+                ConsoleTable.From(ListadoDatos).Write();
+            }
+            else
+            {
+                Console.WriteLine("No hay registros.");
+                return;
+            }
+            
             Console.WriteLine("*********************************************************************************");
 
             Console.WriteLine("¿Si desea navegar hacia un registro en especifico? Ingrese 1 si no presione cualquier otro boton: ");
@@ -142,6 +189,42 @@ namespace _62011019_Proyecto1
         {
             File.WriteAllText(RutaArchivoDatos, string.Empty);
         }
+        public void LeerListaDisponibles()
+        {
+            ActualizarDatosEnMemoriaListaDisponibles();
+            if(ListaDisponiblesDatos.Count > 0)
+            {
+                ConsoleTable.From(ListaDisponiblesDatos).Write();
+            }
+            else
+            {
+                Console.WriteLine("No hay registros.");
+            }            
+        }
+        public void LeerIndice()
+        {
+            ActualizarDatosEnMemoriaIndice();
+            if (IndiceListadoDatos.Count > 0)
+            {
+                ConsoleTable.From(IndiceListadoDatos).Write();
+            }
+            else
+            {
+                Console.WriteLine("No hay registros.");
+            }            
+        }
+        public void CompactarArchivoDeDatos()
+        {
+            ActualizarDatosEnMemoria();
+            LimpiarArchivoDatos();
+            List<DetalleCasaDto> nuevaListaDatos = ListadoDatos.Where(x => x.Activo).ToList();
 
+            int contador = 0;
+            foreach (var item in nuevaListaDatos)
+            {
+                contador++;
+                RegistrarNuevoObjetoEnTxt(item, true, contador);
+            }
+        }
     }
 }

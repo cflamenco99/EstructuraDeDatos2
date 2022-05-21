@@ -9,9 +9,9 @@ Console.WriteLine("MENU DE OPCIONES");
 Console.WriteLine("1. Leer registros");
 Console.WriteLine("2. Ingresar registro");
 Console.WriteLine("3. Eliminar registro");
-Console.WriteLine("4. Manejar lista de disponibles");
+Console.WriteLine("4. Mostrar lista de disponibles");
 Console.WriteLine("5. Compactar espacio");
-Console.WriteLine("6. Manejar indice primario");
+Console.WriteLine("6. Mostrar indice primario");
 Console.WriteLine("7. Salir");
 Console.WriteLine("*********************************************************************************");
 
@@ -32,10 +32,13 @@ while(centinela == 0)
             acciones.EliminarRegistro();
             break;
         case "4":
+            acciones.LeerListaDisponibles();
             break;
         case "5":
+            acciones.CompactarArchivoDeDatos();            
             break;
         case "6":
+            acciones.LeerIndice();
             break;
         case "7":
             centinela++;
