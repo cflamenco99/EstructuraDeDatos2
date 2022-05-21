@@ -26,6 +26,7 @@ while(centinela == 0)
             acciones.LeerRegistros();
             break;
         case "2":
+            acciones.InsertarRegistro();
             break;
         case "3":
             break;

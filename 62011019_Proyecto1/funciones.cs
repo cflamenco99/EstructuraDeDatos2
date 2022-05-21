@@ -10,16 +10,22 @@ namespace _62011019_Proyecto1
 {
     public class funciones
     {
+        private static int CantidadFijaCaracteres => 10;
+        private static string RutaArchivoDatos => $"../../../Proyecto1.txt";
+        public List<DetalleCasaDto> ListadoDatos { get; set; } = new List<DetalleCasaDto>();
+        public List<IndiceDetalleCasaDto> IndiceListadoDatos { get; set; }
         public funciones()
         {
         }
-        private static int CantidadFijaCaracteres => 10;
-        public void LeerRegistros()
+
+        public void ActualizarDatosEnMemoria()
         {
-            List<DetalleCasaDto> listado = new List<DetalleCasaDto>();
-            string FileToRead = $"../../../Proyecto1.txt";
-            // Creating string array  
-            string[] filas = File.ReadAllLines(FileToRead);
+            if (ListadoDatos.Count > 0)
+            {
+                ListadoDatos.RemoveRange(0, ListadoDatos.Count);
+            }
+
+            string[] filas = File.ReadAllLines(RutaArchivoDatos);
             foreach (string fi in filas)
             {
                 string[] obj = fi.Split('/');
@@ -30,12 +36,79 @@ namespace _62011019_Proyecto1
                     obj[3],
                     obj[4],
                     obj[5],
-                    bool.Parse(obj[6])
+                    obj[6],
+                    bool.Parse(obj[7])
                     );
-                listado.Add(registro);
+                ListadoDatos.Add(registro);
             }
-            ConsoleTable.From(listado).Write();
+        }
+        public void LeerRegistros()
+        {
+            ActualizarDatosEnMemoria();
+
+            ConsoleTable.From(ListadoDatos).Write();
             Console.WriteLine("*********************************************************************************");
+
+            Console.WriteLine("¿Si desea navegar hacia un registro en especifico? Ingrese 1 si no presione cualquier otro boton: ");
+            var decision = Console.ReadLine();
+
+            if(decision == "1")
+            {
+                Console.WriteLine("Ingrese el codigo de casa a buscar: ");
+                var codigo = Console.ReadLine();
+
+                var indice = IndiceListadoDatos.Where(x => x.CodigoCasa == codigo).FirstOrDefault();
+                List<DetalleCasaDto> registro = new List<DetalleCasaDto>();
+                registro.Add(ListadoDatos[indice.NumeroRegistro]);
+                ConsoleTable.From(registro).Write();
+            }
+        }
+
+        public void InsertarRegistro()
+        {
+            ActualizarDatosEnMemoria();
+            Console.WriteLine("*********************************************************************************");
+            DetalleCasaDto nuevoRegistro = new DetalleCasaDto();
+
+            Console.WriteLine("Ingrese el codigo de casa: ");
+            nuevoRegistro.CodigoCasa = Console.ReadLine();
+
+            Console.WriteLine("Ingrese el codigo de proyecto residencial de la casa: ");
+            nuevoRegistro.CodigoProyectoResidencial = Console.ReadLine();
+
+
+            Console.WriteLine("Ingrese la ubicacion o bloque de la casa: ");
+            nuevoRegistro.Ubicacion = Console.ReadLine();
+
+
+            Console.WriteLine("Ingrese la cantidad de habitaciones de la casa: ");
+            nuevoRegistro.CantidadHabitaciones = Console.ReadLine();
+
+
+            Console.WriteLine("Ingrese la cantidad de baños de la casa: ");
+            nuevoRegistro.CantidadBaños = Console.ReadLine();
+
+
+            Console.WriteLine("Ingrese el precio de la casa: ");
+            nuevoRegistro.Precio = Console.ReadLine();
+
+            RegistrarNuevoObjetoEnTxt(nuevoRegistro);
+            Console.WriteLine("*********************************************************************************");            
+        }
+
+        private int ObtenerSiguientePosicionEnArcvhivo()
+        {
+            if (ListadoDatos == null || ListadoDatos.Count == 0) { return 1; }
+            return ListadoDatos.Count + 1;
+        }
+
+        private void RegistrarNuevoObjetoEnTxt(DetalleCasaDto registro) 
+        {
+            using (StreamWriter sw = File.AppendText(RutaArchivoDatos))
+            {
+                int posicionSiguiente = ObtenerSiguientePosicionEnArcvhivo();
+                sw.Write($"{posicionSiguiente}/{registro.CodigoCasa}/{registro.CodigoProyectoResidencial}/{registro.Ubicacion}/{registro.CantidadHabitaciones}/{registro.CantidadBaños}/{registro.Precio}/true");
+            }
         }
 
     }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "C4xwj8BraMXoB8R3OChmD9SMIEdYE4c+yHg+rXfbNWXA2To8ixAYcH4+CFRFfafUnt4t8+BmngQr370yoH7HCg==",
+  "dgSpecHash": "F0F0exd8KhY+9aZvjWwQ6i6MME+5nLzdCFiWneg8SPlpgumlCjd5etRZI7c2kOFTqiBbq/lqbXWwaPzt7b6OYA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\cflam\\source\\repos\\62011019_Proyecto1\\62011019_Proyecto1\\62011019_Proyecto1.csproj",
+  "projectFilePath": "C:\\Users\\cflam\\OneDrive\\Documentos\\GitHub\\EstructuraDeDatos2\\62011019_Proyecto1\\62011019_Proyecto1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\cflam\\.nuget\\packages\\consoletables\\2.4.2\\consoletables.2.4.2.nupkg.sha512",
     "C:\\Users\\cflam\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",

@@ -678,11 +678,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cflam\\source\\repos\\62011019_Proyecto1\\62011019_Proyecto1\\62011019_Proyecto1.csproj",
+      "projectUniqueName": "C:\\Users\\cflam\\OneDrive\\Documentos\\GitHub\\EstructuraDeDatos2\\62011019_Proyecto1\\62011019_Proyecto1.csproj",
       "projectName": "62011019_Proyecto1",
-      "projectPath": "C:\\Users\\cflam\\source\\repos\\62011019_Proyecto1\\62011019_Proyecto1\\62011019_Proyecto1.csproj",
+      "projectPath": "C:\\Users\\cflam\\OneDrive\\Documentos\\GitHub\\EstructuraDeDatos2\\62011019_Proyecto1\\62011019_Proyecto1.csproj",
       "packagesPath": "C:\\Users\\cflam\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cflam\\source\\repos\\62011019_Proyecto1\\62011019_Proyecto1\\obj\\",
+      "outputPath": "C:\\Users\\cflam\\OneDrive\\Documentos\\GitHub\\EstructuraDeDatos2\\62011019_Proyecto1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
