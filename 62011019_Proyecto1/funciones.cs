@@ -10,14 +10,13 @@ namespace _62011019_Proyecto1
 {
     public class funciones
     {
-        private static int CantidadFijaCaracteres => 10;
+        private static int CantidadMaximaCaracteresPorRegistro => 30;
         private static string RutaArchivoDatos => $"../../../Proyecto1.txt";
         public List<DetalleCasaDto> ListadoDatos { get; set; } = new List<DetalleCasaDto>();
         public List<IndiceDetalleCasaDto> IndiceListadoDatos { get; set; }
         public funciones()
         {
         }
-
         public void ActualizarDatosEnMemoria()
         {
             if (ListadoDatos.Count > 0)
@@ -63,52 +62,85 @@ namespace _62011019_Proyecto1
                 ConsoleTable.From(registro).Write();
             }
         }
-
         public void InsertarRegistro()
         {
             ActualizarDatosEnMemoria();
             Console.WriteLine("*********************************************************************************");
+            Console.WriteLine("REGISTRO DE CASA");
             DetalleCasaDto nuevoRegistro = new DetalleCasaDto();
 
-            Console.WriteLine("Ingrese el codigo de casa: ");
+            Console.Write("Ingrese el codigo de casa: ");
             nuevoRegistro.CodigoCasa = Console.ReadLine();
 
-            Console.WriteLine("Ingrese el codigo de proyecto residencial de la casa: ");
+            Console.Write("Ingrese el codigo de proyecto residencial de la casa: ");
             nuevoRegistro.CodigoProyectoResidencial = Console.ReadLine();
 
 
-            Console.WriteLine("Ingrese la ubicacion o bloque de la casa: ");
+            Console.Write("Ingrese la ubicacion o bloque de la casa: ");
             nuevoRegistro.Ubicacion = Console.ReadLine();
 
 
-            Console.WriteLine("Ingrese la cantidad de habitaciones de la casa: ");
+            Console.Write("Ingrese la cantidad de habitaciones de la casa: ");
             nuevoRegistro.CantidadHabitaciones = Console.ReadLine();
 
 
-            Console.WriteLine("Ingrese la cantidad de baños de la casa: ");
+            Console.Write("Ingrese la cantidad de baños de la casa: ");
             nuevoRegistro.CantidadBaños = Console.ReadLine();
 
 
-            Console.WriteLine("Ingrese el precio de la casa: ");
+            Console.Write("Ingrese el precio de la casa: ");
             nuevoRegistro.Precio = Console.ReadLine();
 
-            RegistrarNuevoObjetoEnTxt(nuevoRegistro);
+            nuevoRegistro.Activo = true;
+
+            RegistrarNuevoObjetoEnTxt(nuevoRegistro, false, 0);
+            Console.WriteLine("Registro grabado exitosamente");
             Console.WriteLine("*********************************************************************************");            
         }
-
         private int ObtenerSiguientePosicionEnArcvhivo()
         {
             if (ListadoDatos == null || ListadoDatos.Count == 0) { return 1; }
             return ListadoDatos.Count + 1;
         }
-
-        private void RegistrarNuevoObjetoEnTxt(DetalleCasaDto registro) 
+        private void RegistrarNuevoObjetoEnTxt(DetalleCasaDto registro, bool registroPorEliminacion, int contador) 
         {
             using (StreamWriter sw = File.AppendText(RutaArchivoDatos))
             {
-                int posicionSiguiente = ObtenerSiguientePosicionEnArcvhivo();
-                sw.Write($"{posicionSiguiente}/{registro.CodigoCasa}/{registro.CodigoProyectoResidencial}/{registro.Ubicacion}/{registro.CantidadHabitaciones}/{registro.CantidadBaños}/{registro.Precio}/true");
+                int posicionSiguiente; ;
+                if (registroPorEliminacion)
+                {
+                    posicionSiguiente = contador;
+                }
+                else
+                {
+                    posicionSiguiente = ObtenerSiguientePosicionEnArcvhivo();
+                }
+                
+                sw.WriteLine($"{posicionSiguiente}/{registro.CodigoCasa}/{registro.CodigoProyectoResidencial}/{registro.Ubicacion}/{registro.CantidadHabitaciones}/{registro.CantidadBaños}/{registro.Precio}/{registro.Activo == true}");
+            }            
+        }
+        public void EliminarRegistro()
+        {
+            ActualizarDatosEnMemoria();
+            Console.WriteLine("*********************************************************************************");
+            Console.Write("Ingrese el codigo de casa que desea eliminar: ");
+            var codigo = Console.ReadLine();
+
+            ListadoDatos.Find(x => x.CodigoCasa == codigo).Activo = false;
+            LimpiarArchivoDatos();
+
+            int contador = 0;
+            foreach (var item in ListadoDatos)
+            {
+                contador++;
+                RegistrarNuevoObjetoEnTxt(item, true, contador);
             }
+
+            Console.WriteLine("*********************************************************************************");
+        }
+        private void LimpiarArchivoDatos()
+        {
+            File.WriteAllText(RutaArchivoDatos, string.Empty);
         }
 
     }

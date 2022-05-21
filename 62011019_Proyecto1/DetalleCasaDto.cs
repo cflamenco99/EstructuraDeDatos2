@@ -12,7 +12,7 @@
             Ubicacion = ubicacion;
             CantidadHabitaciones = cantidadHabitaciones;
             CantidadBaños = cantidadBaños;
-            Precio = $"L. {precio}";
+            Precio = precio;
             Activo = activo;
             this.NumeroRegistro = posicion;
         }

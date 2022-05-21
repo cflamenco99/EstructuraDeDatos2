@@ -29,6 +29,7 @@ while(centinela == 0)
             acciones.InsertarRegistro();
             break;
         case "3":
+            acciones.EliminarRegistro();
             break;
         case "4":
             break;
