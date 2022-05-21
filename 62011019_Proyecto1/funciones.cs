@@ -225,6 +225,7 @@ namespace _62011019_Proyecto1
                 contador++;
                 RegistrarNuevoObjetoEnTxt(item, true, contador);
             }
+
         }
     }
 }
