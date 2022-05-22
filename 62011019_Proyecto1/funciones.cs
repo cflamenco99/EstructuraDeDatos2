@@ -74,8 +74,8 @@ namespace _62011019_Proyecto1
             {
                 string[] obj = fi.Split('/');
                 ListaDisponiblesDto registro = new ListaDisponiblesDto(
-                    obj[0],
-                    obj[1]
+                    int.Parse(obj[0]),
+                    obj[1]                    
                     );
                 ListaDisponiblesDatos.Add(registro);
             }
@@ -87,10 +87,7 @@ namespace _62011019_Proyecto1
             {
                 ConsoleTable.From(ListadoDatos).Write();
                 var registrosEliminados = ListadoDatos.Where(x => x.Activo == false).ToList().Count();
-                if(registrosEliminados > 0)
-                {
-                    Console.WriteLine($"Count eliminados: {registrosEliminados}");
-                }
+                Console.WriteLine($"Count eliminados: {registrosEliminados}");
             }
             else
             {
@@ -108,9 +105,10 @@ namespace _62011019_Proyecto1
                 Console.WriteLine("Ingrese el codigo de casa a buscar: ");
                 var codigo = Console.ReadLine();
 
+                ActualizarDatosEnMemoriaIndice();
                 var indice = IndiceListadoDatos.Where(x => x.CodigoCasa == codigo).FirstOrDefault();
                 List<DetalleCasaDto> registro = new List<DetalleCasaDto>();
-                registro.Add(ListadoDatos[indice.NumeroRegistro]);
+                registro.Add(ListadoDatos[indice.NumeroRegistro - 1]);
                 ConsoleTable.From(registro).Write();
             }
         }
@@ -158,7 +156,7 @@ namespace _62011019_Proyecto1
         {
             using (StreamWriter sw = File.AppendText(RutaArchivoDatos))
             {
-                int posicionSiguiente; ;
+                int posicionSiguiente;
                 if (registroPorEliminacion)
                 {
                     posicionSiguiente = contador;
@@ -167,8 +165,16 @@ namespace _62011019_Proyecto1
                 {
                     posicionSiguiente = ObtenerSiguientePosicionEnArcvhivo();
                 }
-                
-                sw.WriteLine($"{posicionSiguiente}/{registro.CodigoCasa}/{registro.CodigoProyectoResidencial}/{registro.Ubicacion}/{registro.CantidadHabitaciones}/{registro.CantidadBaños}/{registro.Precio}/{registro.Activo == true}");
+
+
+                AgregarListaDisponibles(posicionSiguiente, registro.CodigoCasa);
+
+                string registroEnCadena = $"{posicionSiguiente}/{registro.CodigoCasa}/{registro.CodigoProyectoResidencial}/{registro.Ubicacion}/{registro.CantidadHabitaciones}/{registro.CantidadBaños}/{registro.Precio}/{registro.Activo == true}";
+                sw.WriteLine(registroEnCadena);
+                if(registro.Activo)
+                {
+                    AgregarIndicePrimario(posicionSiguiente, registro.CodigoCasa);
+                }
             }            
         }
         public void EliminarRegistro()
@@ -178,8 +184,9 @@ namespace _62011019_Proyecto1
             Console.Write("Ingrese el codigo de casa que desea eliminar: ");
             var codigo = Console.ReadLine();
 
-            ListadoDatos.Find(x => x.CodigoCasa == codigo).Activo = false;
+            var registroEliminado = ListadoDatos.Find(x => x.CodigoCasa == codigo).Activo = false;            
             LimpiarArchivoDatos();
+            LimpiarIndicePrimario();
 
             int contador = 0;
             foreach (var item in ListadoDatos)
@@ -222,6 +229,7 @@ namespace _62011019_Proyecto1
         {
             ActualizarDatosEnMemoria();
             LimpiarArchivoDatos();
+            LimpiarIndicePrimario();
             List<DetalleCasaDto> nuevaListaDatos = ListadoDatos.Where(x => x.Activo).ToList();
 
             int contador = 0;
@@ -231,13 +239,23 @@ namespace _62011019_Proyecto1
                 RegistrarNuevoObjetoEnTxt(item, true, contador);
             }
         }
-        private void ActualizarIndicePrimario()
+        private void AgregarIndicePrimario(int posicion, string codigoCasa)
         {
-
+            using (StreamWriter sw = File.AppendText(RutaArchivoIndice))
+            {
+                sw.WriteLine($"{posicion}/{codigoCasa}");
+            }
         }
-        private void ActualizarListaDisponibles()
+        private void LimpiarIndicePrimario()
         {
-
-        }        
+            File.WriteAllText(RutaArchivoIndice, string.Empty);
+        }
+        private void AgregarListaDisponibles(int posicion, string CampoLLave)
+        {
+            using (StreamWriter sw = File.AppendText(RutaArchivoListaDisponibles))
+            {
+                sw.WriteLine($"{posicion}/{CampoLLave}");
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@
         public DetalleCasaDto()
         {
         }
-        public DetalleCasaDto(string posicion, string codigoCasa, string codigoProyectoResidencial, string ubicacion, string cantidadHabitaciones, string cantidadBaños, string precio, bool activo)
+        public DetalleCasaDto(string numeroRegistro, string codigoCasa, string codigoProyectoResidencial, string ubicacion, string cantidadHabitaciones, string cantidadBaños, string precio, bool activo)
         {
             CodigoCasa = codigoCasa;
             CodigoProyectoResidencial = codigoProyectoResidencial;
@@ -14,7 +14,7 @@
             CantidadBaños = cantidadBaños;
             Precio = precio;
             Activo = activo;
-            this.NumeroRegistro = posicion;
+            NumeroRegistro = numeroRegistro;
         }
         public string NumeroRegistro { get; set; }
         public string CodigoCasa { get; set; }
